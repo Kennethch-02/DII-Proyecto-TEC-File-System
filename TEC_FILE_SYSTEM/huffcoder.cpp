@@ -15,10 +15,10 @@ string huffcoder::decode(string code) {
 
     string OriginalMessage;
 
-    vector<string> primervector  = split.split(code,'-');
-    vector<string> datalist = split.split(primervector[0],',');
-    vector<string> codelista = split.split(primervector[1],',');
-    vector<string> messagecode = split.split(primervector[2],',');
+    vector<string> primervector  = split.split(code,'~');
+    vector<string> datalist = split.split(primervector[0],'|');
+    vector<string> codelista = split.split(primervector[1],'|');
+    vector<string> messagecode = split.split(primervector[2],'|');
 
     for(int i = 0; i<(int)messagecode.size(); i++){
         for(int j = 0; j<(int)codelista.size(); j++){
@@ -86,7 +86,7 @@ string huffcoder::encodeOriginalText(string originaltext,vector<string>datalist,
     for(int i = 0; i<(int)originaltext.size();i++){
         for(int j = 0; j<(int)datalist.size();j++){
             if(originaltext[i] == datalist[j][0]){
-                codeText+= (string) codelist[j] + (string) ",";
+                codeText+= (string) codelist[j] + (string) "|";
             }
         }
     }
@@ -103,18 +103,18 @@ string huffcoder::serverstring(vector<string>datalist,vector<string>codelist,str
     string encodeTextserver;
 
     for(int i = 0; i<(int)datalist.size();i++){
-        encodeTextserver += datalist[i] + ',';
+        encodeTextserver += datalist[i] + '|';
     }
-    encodeTextserver += '-';
+    encodeTextserver += '~';
 
     for(int j = 0; j<(int)datalist.size();j++){
-        encodeTextserver += codelist[j] + ',';
+        encodeTextserver += codelist[j] + '|';
     }
-    encodeTextserver += '-';
+    encodeTextserver += '~';
 
     encodeTextserver += encodeText;
 
-    encodeTextserver += '-';
+    encodeTextserver += '~';
 
     return encodeTextserver;
 
