@@ -40,13 +40,8 @@ void Controller_Node::add_node()
         }
     }
 }
-void Controller_Node::delete_node()
-{
-
-}
 void Controller_Node::write_book(char *rute)
 {
-    QStringList archivos;
     QString rut = rute;
     if( DIR* pDIR = opendir(rute)){
         while(dirent* entry = readdir(pDIR)){
@@ -65,127 +60,126 @@ void Controller_Node::write_book(char *rute)
             while (!in.atEnd())
             {
                 for (auto & b : in.readLine()){
-                    bytes = to_bytes(b);
+                    QString Bytes = to_bytes(b);
+                    bytes.clear();
+                    for(int pos = 0; pos<4;pos++){
+                        bytes.append(Bytes[pos]);
+
+                    }
+                    write_in_disk();
+                    bytes.clear();
+                    for(int pos = 4; pos<8;pos++){
+                        bytes.append(Bytes[pos]);
+                    }
                     write_in_disk();
                 }
             inputFile.close();
             }
         }
+        QString Bytes = to_bytes("&");
+        bytes.clear();
+        for(int pos = 0; pos<4;pos++){
+            bytes.append(Bytes[pos]);
+
+        }
+        write_in_disk();
+        bytes.clear();
+        for(int pos = 4; pos<8;pos++){
+            bytes.append(Bytes[pos]);
+        }
+        write_in_disk();
     }
-
 }
-void Controller_Node::read_book()
+QString Controller_Node::read_book(QString search)
 {
-
-}
-
-void Controller_Node::show_matriz()
-{
-    DiskNode This_Node = *Head;
-    for(int disk = 0; disk<5; disk++){
-
-        if(This_Node.get_next() != nullptr){
-            This_Node = *This_Node.get_next();
+    QStringList letter;
+    QString delimiter = to_bytes("&");
+    QString result;
+    QString s_bit;
+    QString word;
+    int book = 0;
+    int parity = 5;
+    int pos_letter = 0;
+    int book_letter = 0;
+    for (auto & b : search){
+        QString bts = to_bytes(b);
+        letter.append(bts);
+    }
+    DiskNode *node = Head;
+    for(int slt = 1; slt<Head->bits.size();slt++){
+        for(int disk = 1; disk<6; disk++){
+            if(disk != parity){
+                s_bit.append(QString::number(node->bits[slt-1]));
+            }
+            if(!node->is_last){
+                node = node->get_next();
+            }
+        }
+        node = Head;
+        if(parity==1){
+            parity = 5;
         }else{
-            This_Node = *Head;
+            parity--;
+        }
+        if(slt%2==0){
+            book_letter++;
+            if(s_bit==delimiter){
+                book++;
+                book_letter=0;
+            }
+            if(pos_letter<letter.size()){
+                if(s_bit==letter[pos_letter]){
+                    word.append(to_string(s_bit));
+                    pos_letter++;
+                }else{
+                    word.clear();
+                    pos_letter = 0;
+                }
+            }else{
+                QString _result = word+"-"+archivos[book]+"-"+QString::number(book_letter)+"/";
+                result.append(_result);
+                pos_letter = 0;
+                word.clear();
+            }
+            s_bit.clear();
         }
     }
+    return result;
 }
-
 void Controller_Node::write_in_disk()
 {
-    QStringList a;
+
     int _parity = 0;
-    bool adjust = true;
-    while(adjust){
-        if(bytes.size()<8){
-            bytes.insert(0,"0");
-        }else{
-            adjust = false;
-        }
-    }
-    //First midle of bytes
     int this_bit;
-    for(int i = 0; i<(bytes.size()/2); i++){
+    for(int i = 0; i<bytes.size(); i++){
         this_bit = bytes[i].unicode()-48;
         if(this_bit==1){
             _parity += 1;
         }
     }
-    //qDebug()<<"parity 1 "<<_parity%2<< "Bytes " << bytes;
-    DiskNode *This_Node = Head;
-    int disk = 1;
-    int pos = 0;
-    for(int i = 0; i<(bytes.size()/2)+1; i++){
-        this_bit = bytes[pos].unicode()-48;
-        if(disk == parity_pos){
+    DiskNode *node = Head;
+    int bit_pos = 0;
+    for(int disk = 1; disk<6; disk++){
+        this_bit = bytes[bit_pos].unicode()-48;
+        if(disk != parity_pos){
+            node->bits.append(this_bit);
+            bit_pos++;
+        }else{
             if(_parity%2==0){
-                This_Node->bits.append(0);
+                node->bits.append(0);
             }else{
-                This_Node->bits.append(1);
+                node->bits.append(1);
             }
-            if(parity_pos == 1){
-                parity_pos = 5;
-            }else{
-                parity_pos--;
-            }
-        }else{
-            This_Node->bits.append(this_bit);
-            pos++;
         }
-        if(!This_Node->is_last){
-            This_Node = This_Node->get_next();
-        }else{
-            This_Node = Head;
-        }
-
-        if(disk==5){
-            disk = 1;
-        }
-        disk++;
-    }
-    //Second midle of bytes
-    _parity = 0;
-    for(int i = 4; i<(bytes.size()); i++){
-        this_bit = bytes[i].unicode()-48;
-        if(this_bit==1){
-            _parity += 1;
+        if(!node->is_last){
+            node = node->get_next();
         }
     }
-    This_Node = Head;
-    disk = 1;
-    pos = 0;
-    for(int i = 4; i<bytes.size(); i++){
-        this_bit = bytes[i].unicode()-48;
-        if(disk == parity_pos){
-            if(_parity%2==0){
-                This_Node->bits.append(0);
-            }else{
-                This_Node->bits.append(1);
-            }
-            if(parity_pos == 1){
-                parity_pos = 5;
-            }else{
-                parity_pos--;
-            }
-            i--;
-
-        }else{
-            This_Node->bits.append(this_bit);
-            pos++;
-        }
-        if(!This_Node->is_last){
-            This_Node= This_Node->get_next();
-        }else{
-            This_Node = Head;
-        }
-        if(disk==5){
-            disk = 1;
-        }else{
-            disk++;
-        }
+    if(parity_pos==1){
+        parity_pos=5;
+    }else{
+        parity_pos--;
     }
-
 
 }
 QString Controller_Node::to_bytes(QString str)
@@ -197,6 +191,14 @@ QString Controller_Node::to_bytes(QString str)
     }
     bool ok;
     QString binary = QString::number(str.toLongLong(&ok, 16),2);
+    bool adjust = true;
+    while(adjust){
+        if(binary.size()<8){
+            binary.insert(0,"0");
+        }else{
+            adjust = false;
+        }
+    }
     return binary;
 }
 QString Controller_Node::to_string(QString byte)

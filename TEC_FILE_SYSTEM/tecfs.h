@@ -34,5 +34,4 @@ private:
     Thread *thread; //Clase Thread
     Ui::TECFS *ui; //Puntero a la interfaz grafica
 };
-
 #endif // TECFS_H

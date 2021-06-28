@@ -13,18 +13,18 @@ public:
     void set_head(DiskNode h);
     DiskNode get_head();
     void add_node();
-    void delete_node();
     void write_book(char *rute);
-    void read_book();
+    QString read_book(QString search);
     thread_read *T_Read;
     thread_write *T_Write;
     QString bytes;
+    QStringList archivos;
 private:
     QList<int> disks;
     QList<int> slts;
-    void show_matriz();
     int disk_pos;
     int parity_pos;
+    int _parity;
     void write_in_disk();
     std::map<QString, int> Diccionario;
     DiskNode *Head;

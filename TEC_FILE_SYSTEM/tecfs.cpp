@@ -27,8 +27,8 @@ TECFS::TECFS(QWidget *parent) :
                 &TECFS::Append_CMD);
 
     thread->start(10,QThread::HighPriority); //Inicia el Thread ejecutandose cada 10ms
-    controller_node.write_book("/home/kenneth/Proyecto-TEC-File-System/TEC_FILE_SYSTEM/books");
-
+    //controller_node.write_book("/home/kenneth/Proyecto-TEC-File-System/TEC_FILE_SYSTEM/books");
+    //qDebug()<<controller_node.read_book("los").split("/");
 }
 /**
 * \brief Metodo que se encarga de ejecutar la accion que realiza el servidor
@@ -36,6 +36,7 @@ TECFS::TECFS(QWidget *parent) :
 */
 void TECFS::on_connect_clicked()
 {
+
     Dialog m(this); //inicial el cuadro de dialogo
     if(m.exec() == QDialog::Rejected){ //Comprueba que el dialogo no sea cerrado
         return;
