@@ -63,6 +63,7 @@ void Controller_Node::write_book(char *rute)
     if( DIR* pDIR = opendir(rute)){ //Instrucciones encargadar de abrir el Path del archivo
         while(dirent* entry = readdir(pDIR)){ //y cargar en una lista los elementos .txt
             QString fileName = entry->d_name;
+            qDebug()<<fileName;
             if( fileName != "." && fileName != ".." ){
                 archivos.append(fileName);
             }
@@ -70,6 +71,7 @@ void Controller_Node::write_book(char *rute)
         closedir(pDIR); // Cierra la carpeta,importante para mantener un manejo estricto de la memoria
     }
     for( QString& i : archivos){ //Recorre cada archivo .txt que encontrò
+
         QFile inputFile(rut+"/"+i); //Metodo para leer el archivo
         if (inputFile.open(QIODevice::ReadOnly))
         {

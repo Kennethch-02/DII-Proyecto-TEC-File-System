@@ -36,10 +36,11 @@ void server::Do_Action(){
 * \brief Envia mensajes a cada socket conectado al servidor.
 */
 void server::Send_Message(QString message){
+
     for(auto a : mSockets){ //Para cada cliente conectado
         change_cmd("Servidor: Enviando Mensaje");
         QTextStream M(a); //Crea el QTextStream
-        M<<message; //Envio de mensajes
+        M<<message; //Envio de mensajes codificados
         a->flush(); //Limpia el servidor
     }
 }
@@ -55,7 +56,7 @@ void server::incomingConnection(qintptr handle){
         //Recepcion de Mensajes
         QTextStream T(S); //Obtiene el QTextStream
         auto text = T.readAll(); //Lee el QString que contiene el mensaje
-        Received_Message = text; //Asigna el mensaje a la variable Received_Message
+        Received_Message = text; //Decodifica Huffman
         change_cmd("Servidor: Recibiendo mensaje");
         emit R_Message();
     });

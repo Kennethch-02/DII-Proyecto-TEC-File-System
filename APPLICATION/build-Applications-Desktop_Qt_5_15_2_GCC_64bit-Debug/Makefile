@@ -52,16 +52,24 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../Applications/archive.cpp \
+SOURCES       = ../../Applications/HuffTree.cpp \
+		../../Applications/Split.cpp \
+		../../Applications/archive.cpp \
 		../../Applications/dialog.cpp \
+		../../Applications/huffcoder.cpp \
 		../../Applications/main.cpp \
-		../../Applications/mainwindow.cpp moc_archive.cpp \
+		../../Applications/mainwindow.cpp \
+		../../Applications/node.cpp moc_archive.cpp \
 		moc_dialog.cpp \
 		moc_mainwindow.cpp
-OBJECTS       = archive.o \
+OBJECTS       = HuffTree.o \
+		Split.o \
+		archive.o \
 		dialog.o \
+		huffcoder.o \
 		main.o \
 		mainwindow.o \
+		node.o \
 		moc_archive.o \
 		moc_dialog.o \
 		moc_mainwindow.o
@@ -221,7 +229,6 @@ DIST          = /home/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
-		../../Applications/.qmake.stash \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -242,12 +249,20 @@ DIST          = /home/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/exceptions.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/yacc.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/lex.prf \
-		../../../Applications/Applications.pro ../../Applications/archive.h \
+		../../../Applications/Applications.pro ../../Applications/HuffTree.h \
+		../../Applications/Split.h \
+		../../Applications/archive.h \
 		../../Applications/dialog.h \
-		../../Applications/mainwindow.h ../../Applications/archive.cpp \
+		../../Applications/huffcoder.h \
+		../../Applications/mainwindow.h \
+		../../Applications/node.h ../../Applications/HuffTree.cpp \
+		../../Applications/Split.cpp \
+		../../Applications/archive.cpp \
 		../../Applications/dialog.cpp \
+		../../Applications/huffcoder.cpp \
 		../../Applications/main.cpp \
-		../../Applications/mainwindow.cpp
+		../../Applications/mainwindow.cpp \
+		../../Applications/node.cpp
 QMAKE_TARGET  = Applications
 DESTDIR       = 
 TARGET        = Applications
@@ -415,7 +430,6 @@ Makefile: ../../Applications/Applications.pro ../../../../Qt/5.15.2/gcc_64/mkspe
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -594,7 +608,6 @@ Makefile: ../../Applications/Applications.pro ../../../../Qt/5.15.2/gcc_64/mkspe
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf:
@@ -631,8 +644,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../Applications/archive.h ../../Applications/dialog.h ../../Applications/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../Applications/archive.cpp ../../Applications/dialog.cpp ../../Applications/main.cpp ../../Applications/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../Applications/HuffTree.h ../../Applications/Split.h ../../Applications/archive.h ../../Applications/dialog.h ../../Applications/huffcoder.h ../../Applications/mainwindow.h ../../Applications/node.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../Applications/HuffTree.cpp ../../Applications/Split.cpp ../../Applications/archive.cpp ../../Applications/dialog.cpp ../../Applications/huffcoder.cpp ../../Applications/main.cpp ../../Applications/mainwindow.cpp ../../Applications/node.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../Applications/archive.ui ../../Applications/dialog.ui ../../Applications/mainwindow.ui $(DISTDIR)/
 
 
@@ -1016,6 +1029,10 @@ moc_mainwindow.cpp: ../../Applications/mainwindow.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qstyle.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Applications/huffcoder.h \
+		../../Applications/HuffTree.h \
+		../../Applications/node.h \
+		../../Applications/Split.h \
 		moc_predefs.h \
 		../../../../Qt/5.15.2/gcc_64/bin/moc
 	/home/kenneth/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include /home/kenneth/Escritorio/Proyecto-TEC-File-System/APPLICATION/build-Applications-Desktop_Qt_5_15_2_GCC_64bit-Debug/moc_predefs.h -I/home/kenneth/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I/home/kenneth/Escritorio/Proyecto-TEC-File-System/Applications -I/home/kenneth/Qt/5.15.2/gcc_64/include -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtGui -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../Applications/mainwindow.h -o moc_mainwindow.cpp
@@ -1048,6 +1065,13 @@ compiler_lex_clean:
 compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+HuffTree.o: ../../Applications/HuffTree.cpp ../../Applications/HuffTree.h \
+		../../Applications/node.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HuffTree.o ../../Applications/HuffTree.cpp
+
+Split.o: ../../Applications/Split.cpp ../../Applications/Split.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Split.o ../../Applications/Split.cpp
 
 archive.o: ../../Applications/archive.cpp ../../Applications/archive.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QDialog \
@@ -1262,33 +1286,14 @@ dialog.o: ../../Applications/dialog.cpp ../../Applications/dialog.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qfiledevice.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
-		ui_dialog.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/QVariant \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QSpinBox \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qregularexpression.h
+		ui_dialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog.o ../../Applications/dialog.cpp
+
+huffcoder.o: ../../Applications/huffcoder.cpp ../../Applications/huffcoder.h \
+		../../Applications/HuffTree.h \
+		../../Applications/node.h \
+		../../Applications/Split.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o huffcoder.o ../../Applications/huffcoder.cpp
 
 main.o: ../../Applications/main.cpp ../../Applications/mainwindow.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QMainWindow \
@@ -1420,6 +1425,10 @@ main.o: ../../Applications/main.cpp ../../Applications/mainwindow.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qstyle.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Applications/huffcoder.h \
+		../../Applications/HuffTree.h \
+		../../Applications/node.h \
+		../../Applications/Split.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1559,42 +1568,23 @@ mainwindow.o: ../../Applications/mainwindow.cpp ../../Applications/mainwindow.h 
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qstyle.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtabbar.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qrubberband.h \
+		../../Applications/huffcoder.h \
+		../../Applications/HuffTree.h \
+		../../Applications/node.h \
+		../../Applications/Split.h \
 		ui_mainwindow.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/QVariant \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QLineEdit \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QListWidget \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QWidget \
 		../../Applications/dialog.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QFile \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QDir \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qdir.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qfileinfo.h
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qfileinfo.h \
+		../../Applications/archive.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../../Applications/mainwindow.cpp
+
+node.o: ../../Applications/node.cpp ../../Applications/node.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../../Applications/node.cpp
 
 moc_archive.o: moc_archive.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_archive.o moc_archive.cpp

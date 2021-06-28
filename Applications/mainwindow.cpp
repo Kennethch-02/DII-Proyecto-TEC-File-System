@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(mSocket, &QTcpSocket::readyRead, [&](){ //Coneccion del Socket para recibir mensajes
         QTextStream T(mSocket);
         auto text = T.readAll();
-        Interpreter_Message(text);
+        Interpreter_Message(text); //Decodificacion Huffman
     });
 }
 /**
@@ -49,7 +49,7 @@ void MainWindow::Interpreter_Message(QString message)
 void MainWindow::Send_Message(QString message)
 {
     QTextStream A(mSocket);
-    A<<message;
+    A<<message; //Envio de mensajes codificados
     A.flush();
 }
 /**

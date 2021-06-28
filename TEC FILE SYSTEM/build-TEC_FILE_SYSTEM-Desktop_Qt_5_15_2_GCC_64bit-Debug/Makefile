@@ -52,8 +52,12 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../../TEC_FILE_SYSTEM/controller_node.cpp \
+SOURCES       = ../../TEC_FILE_SYSTEM/HuffTree.cpp \
+		../../TEC_FILE_SYSTEM/Split.cpp \
+		../../TEC_FILE_SYSTEM/controller_node.cpp \
 		../../TEC_FILE_SYSTEM/disknode.cpp \
+		../../TEC_FILE_SYSTEM/huffcoder.cpp \
+		../../TEC_FILE_SYSTEM/node.cpp \
 		../../TEC_FILE_SYSTEM/tecfs.cpp \
 		../../TEC_FILE_SYSTEM/dialog.cpp \
 		../../TEC_FILE_SYSTEM/server.cpp \
@@ -62,8 +66,12 @@ SOURCES       = ../../TEC_FILE_SYSTEM/controller_node.cpp \
 		moc_server.cpp \
 		moc_client.cpp \
 		moc_tecfs.cpp
-OBJECTS       = controller_node.o \
+OBJECTS       = HuffTree.o \
+		Split.o \
+		controller_node.o \
 		disknode.o \
+		huffcoder.o \
+		node.o \
 		tecfs.o \
 		dialog.o \
 		server.o \
@@ -229,7 +237,6 @@ DIST          = /home/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
-		../../TEC_FILE_SYSTEM/.qmake.stash \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -250,13 +257,21 @@ DIST          = /home/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/exceptions.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/yacc.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/lex.prf \
-		../../../TEC_FILE_SYSTEM/TEC_FILE_SYSTEM.pro ../../TEC_FILE_SYSTEM/controller_node.h \
+		../../../TEC_FILE_SYSTEM/TEC_FILE_SYSTEM.pro ../../TEC_FILE_SYSTEM/HuffTree.h \
+		../../TEC_FILE_SYSTEM/Split.h \
+		../../TEC_FILE_SYSTEM/controller_node.h \
 		../../TEC_FILE_SYSTEM/dialog.h \
 		../../TEC_FILE_SYSTEM/disknode.h \
+		../../TEC_FILE_SYSTEM/huffcoder.h \
+		../../TEC_FILE_SYSTEM/node.h \
 		../../TEC_FILE_SYSTEM/server.h \
 		../../TEC_FILE_SYSTEM/client.h \
-		../../TEC_FILE_SYSTEM/tecfs.h ../../TEC_FILE_SYSTEM/controller_node.cpp \
+		../../TEC_FILE_SYSTEM/tecfs.h ../../TEC_FILE_SYSTEM/HuffTree.cpp \
+		../../TEC_FILE_SYSTEM/Split.cpp \
+		../../TEC_FILE_SYSTEM/controller_node.cpp \
 		../../TEC_FILE_SYSTEM/disknode.cpp \
+		../../TEC_FILE_SYSTEM/huffcoder.cpp \
+		../../TEC_FILE_SYSTEM/node.cpp \
 		../../TEC_FILE_SYSTEM/tecfs.cpp \
 		../../TEC_FILE_SYSTEM/dialog.cpp \
 		../../TEC_FILE_SYSTEM/server.cpp \
@@ -429,7 +444,6 @@ Makefile: ../../TEC_FILE_SYSTEM/TEC_FILE_SYSTEM.pro ../../../../Qt/5.15.2/gcc_64
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -608,7 +622,6 @@ Makefile: ../../TEC_FILE_SYSTEM/TEC_FILE_SYSTEM.pro ../../../../Qt/5.15.2/gcc_64
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf:
@@ -645,8 +658,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../TEC_FILE_SYSTEM/controller_node.h ../../TEC_FILE_SYSTEM/dialog.h ../../TEC_FILE_SYSTEM/disknode.h ../../TEC_FILE_SYSTEM/server.h ../../TEC_FILE_SYSTEM/client.h ../../TEC_FILE_SYSTEM/tecfs.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../TEC_FILE_SYSTEM/controller_node.cpp ../../TEC_FILE_SYSTEM/disknode.cpp ../../TEC_FILE_SYSTEM/tecfs.cpp ../../TEC_FILE_SYSTEM/dialog.cpp ../../TEC_FILE_SYSTEM/server.cpp ../../TEC_FILE_SYSTEM/client.cpp ../../TEC_FILE_SYSTEM/main.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../TEC_FILE_SYSTEM/HuffTree.h ../../TEC_FILE_SYSTEM/Split.h ../../TEC_FILE_SYSTEM/controller_node.h ../../TEC_FILE_SYSTEM/dialog.h ../../TEC_FILE_SYSTEM/disknode.h ../../TEC_FILE_SYSTEM/huffcoder.h ../../TEC_FILE_SYSTEM/node.h ../../TEC_FILE_SYSTEM/server.h ../../TEC_FILE_SYSTEM/client.h ../../TEC_FILE_SYSTEM/tecfs.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../TEC_FILE_SYSTEM/HuffTree.cpp ../../TEC_FILE_SYSTEM/Split.cpp ../../TEC_FILE_SYSTEM/controller_node.cpp ../../TEC_FILE_SYSTEM/disknode.cpp ../../TEC_FILE_SYSTEM/huffcoder.cpp ../../TEC_FILE_SYSTEM/node.cpp ../../TEC_FILE_SYSTEM/tecfs.cpp ../../TEC_FILE_SYSTEM/dialog.cpp ../../TEC_FILE_SYSTEM/server.cpp ../../TEC_FILE_SYSTEM/client.cpp ../../TEC_FILE_SYSTEM/main.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../../TEC_FILE_SYSTEM/dialog.ui ../../TEC_FILE_SYSTEM/tecfs.ui $(DISTDIR)/
 
 
@@ -873,6 +886,10 @@ moc_server.cpp: ../../TEC_FILE_SYSTEM/server.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qurlquery.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/quuid.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QMap \
+		../../TEC_FILE_SYSTEM/huffcoder.h \
+		../../TEC_FILE_SYSTEM/HuffTree.h \
+		../../TEC_FILE_SYSTEM/node.h \
+		../../TEC_FILE_SYSTEM/Split.h \
 		moc_predefs.h \
 		../../../../Qt/5.15.2/gcc_64/bin/moc
 	/home/kenneth/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include '/home/kenneth/Escritorio/Proyecto-TEC-File-System/TEC FILE SYSTEM/build-TEC_FILE_SYSTEM-Desktop_Qt_5_15_2_GCC_64bit-Debug/moc_predefs.h' -I/home/kenneth/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I/home/kenneth/Escritorio/Proyecto-TEC-File-System/TEC_FILE_SYSTEM -I/home/kenneth/Qt/5.15.2/gcc_64/include -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtGui -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../TEC_FILE_SYSTEM/server.h -o moc_server.cpp
@@ -1074,10 +1091,13 @@ moc_tecfs.cpp: ../../TEC_FILE_SYSTEM/tecfs.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qregularexpression.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/quuid.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QMap \
+		../../TEC_FILE_SYSTEM/huffcoder.h \
+		../../TEC_FILE_SYSTEM/HuffTree.h \
+		../../TEC_FILE_SYSTEM/node.h \
+		../../TEC_FILE_SYSTEM/Split.h \
 		../../TEC_FILE_SYSTEM/controller_node.h \
 		../../TEC_FILE_SYSTEM/disknode.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QList \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/QObject \
 		moc_predefs.h \
 		../../../../Qt/5.15.2/gcc_64/bin/moc
 	/home/kenneth/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include '/home/kenneth/Escritorio/Proyecto-TEC-File-System/TEC FILE SYSTEM/build-TEC_FILE_SYSTEM-Desktop_Qt_5_15_2_GCC_64bit-Debug/moc_predefs.h' -I/home/kenneth/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I/home/kenneth/Escritorio/Proyecto-TEC-File-System/TEC_FILE_SYSTEM -I/home/kenneth/Qt/5.15.2/gcc_64/include -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtGui -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtNetwork -I/home/kenneth/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../TEC_FILE_SYSTEM/tecfs.h -o moc_tecfs.cpp
@@ -1106,6 +1126,13 @@ compiler_lex_clean:
 compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+HuffTree.o: ../../TEC_FILE_SYSTEM/HuffTree.cpp ../../TEC_FILE_SYSTEM/HuffTree.h \
+		../../TEC_FILE_SYSTEM/node.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o HuffTree.o ../../TEC_FILE_SYSTEM/HuffTree.cpp
+
+Split.o: ../../TEC_FILE_SYSTEM/Split.cpp ../../TEC_FILE_SYSTEM/Split.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Split.o ../../TEC_FILE_SYSTEM/Split.cpp
 
 controller_node.o: ../../TEC_FILE_SYSTEM/controller_node.cpp ../../TEC_FILE_SYSTEM/controller_node.h \
 		../../TEC_FILE_SYSTEM/disknode.h \
@@ -1153,7 +1180,12 @@ controller_node.o: ../../TEC_FILE_SYSTEM/controller_node.cpp ../../TEC_FILE_SYST
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringlist.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qregexp.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qstringmatcher.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/QObject \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QDebug \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qiodevice.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qobject.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
@@ -1163,12 +1195,6 @@ controller_node.o: ../../TEC_FILE_SYSTEM/controller_node.cpp ../../TEC_FILE_SYST
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qvarlengtharray.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcontainerfwd.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qobject_impl.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/QDebug \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qdebug.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qhash.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qmap.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qtextstream.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qiodevice.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qlocale.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qvariant.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qshareddata.h \
@@ -1252,6 +1278,15 @@ disknode.o: ../../TEC_FILE_SYSTEM/disknode.cpp ../../TEC_FILE_SYSTEM/disknode.h 
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o disknode.o ../../TEC_FILE_SYSTEM/disknode.cpp
+
+huffcoder.o: ../../TEC_FILE_SYSTEM/huffcoder.cpp ../../TEC_FILE_SYSTEM/huffcoder.h \
+		../../TEC_FILE_SYSTEM/HuffTree.h \
+		../../TEC_FILE_SYSTEM/node.h \
+		../../TEC_FILE_SYSTEM/Split.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o huffcoder.o ../../TEC_FILE_SYSTEM/huffcoder.cpp
+
+node.o: ../../TEC_FILE_SYSTEM/node.cpp ../../TEC_FILE_SYSTEM/node.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o node.o ../../TEC_FILE_SYSTEM/node.cpp
 
 tecfs.o: ../../TEC_FILE_SYSTEM/tecfs.cpp ../../TEC_FILE_SYSTEM/tecfs.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QMainWindow \
@@ -1376,46 +1411,14 @@ tecfs.o: ../../TEC_FILE_SYSTEM/tecfs.cpp ../../TEC_FILE_SYSTEM/tecfs.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qregularexpression.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/quuid.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QMap \
+		../../TEC_FILE_SYSTEM/huffcoder.h \
+		../../TEC_FILE_SYSTEM/HuffTree.h \
+		../../TEC_FILE_SYSTEM/node.h \
+		../../TEC_FILE_SYSTEM/Split.h \
 		../../TEC_FILE_SYSTEM/controller_node.h \
 		../../TEC_FILE_SYSTEM/disknode.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QList \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/QObject \
 		ui_tecfs.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/QVariant \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QFormLayout \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qformlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QLayout \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QProgressBar \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qprogressbar.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QSpacerItem \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QTextEdit \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtextedit.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtextdocument.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtextcursor.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtextformat.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qpen.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QWidget \
 		../../TEC_FILE_SYSTEM/dialog.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h
@@ -1526,34 +1529,7 @@ dialog.o: ../../TEC_FILE_SYSTEM/dialog.cpp ../../TEC_FILE_SYSTEM/dialog.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qfiledevice.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
-		ui_dialog.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/QVariant \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QGridLayout \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qicon.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QSpinBox \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qspinbox.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtGui/qvalidator.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/qregularexpression.h \
-		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QWidget
+		ui_dialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog.o ../../TEC_FILE_SYSTEM/dialog.cpp
 
 server.o: ../../TEC_FILE_SYSTEM/server.cpp ../../TEC_FILE_SYSTEM/server.h \
@@ -1638,6 +1614,10 @@ server.o: ../../TEC_FILE_SYSTEM/server.cpp ../../TEC_FILE_SYSTEM/server.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qurlquery.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/quuid.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QMap \
+		../../TEC_FILE_SYSTEM/huffcoder.h \
+		../../TEC_FILE_SYSTEM/HuffTree.h \
+		../../TEC_FILE_SYSTEM/node.h \
+		../../TEC_FILE_SYSTEM/Split.h \
 		../../TEC_FILE_SYSTEM/client.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtNetwork/QTcpSocket \
 		../../../../Qt/5.15.2/gcc_64/include/QtNetwork/qtcpsocket.h \
@@ -1842,10 +1822,13 @@ main.o: ../../TEC_FILE_SYSTEM/main.cpp ../../TEC_FILE_SYSTEM/tecfs.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qregularexpression.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/quuid.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QMap \
+		../../TEC_FILE_SYSTEM/huffcoder.h \
+		../../TEC_FILE_SYSTEM/HuffTree.h \
+		../../TEC_FILE_SYSTEM/node.h \
+		../../TEC_FILE_SYSTEM/Split.h \
 		../../TEC_FILE_SYSTEM/controller_node.h \
 		../../TEC_FILE_SYSTEM/disknode.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QList \
-		../../../../Qt/5.15.2/gcc_64/include/QtCore/QObject \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \

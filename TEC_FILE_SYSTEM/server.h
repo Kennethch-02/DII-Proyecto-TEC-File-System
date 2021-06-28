@@ -3,6 +3,7 @@
 #include <QTcpServer>
 #include <QJsonDocument>
 #include <QMap>
+#include <huffcoder.h>
 /**
 * \brief Servidor con las partes encargadas para la realizacion correcta de la interpretacion
 * de los mensajes recibidos o enviados.
@@ -20,6 +21,7 @@ public:
     int porcent; //Porcentage que se mostrara en la aplicacion TECFS
     QString Received_Message; //String Asignado al mensaje recivido
     void Send_Message(QString message); //Metodo para enviar un mensaje
+    huffcoder Huffman;
 protected:
     void incomingConnection(qintptr handle); //Metodo protegido del QServer
 signals:

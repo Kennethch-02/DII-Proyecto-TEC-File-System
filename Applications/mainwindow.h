@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QListWidgetItem>
-
+#include <huffcoder.h>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -26,8 +26,8 @@ private slots:
     void on_bth_path_clicked();
     void on_btn_search_clicked();
     void on_listWidget_itemPressed(QListWidgetItem *item);
-
 private:
+    huffcoder Huffman;
     void Interpreter_Message(QString message);
     void Send_Message(QString message);
     Ui::MainWindow *ui;

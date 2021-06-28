@@ -1,0 +1,3 @@
+The system data mover (SDM) is a DFSMS/MVS component that interacts with data storage subsystems and with various advanced copy services functions to efficiently move large amounts of data. As updates occur to primary volumes, the SDM manages the process of copying those updates to secondary volumes.
+The SDM ensures that updates to secondary volumes are made in the same order in which they were made to the primary volumes, maintaining sequence consistency.
+The following topics describe XRCspecific SDM functions, the SDM address spaces, and the XRC sessions descriptions.
