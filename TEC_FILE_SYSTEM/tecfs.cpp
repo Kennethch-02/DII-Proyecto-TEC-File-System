@@ -13,20 +13,16 @@ TECFS::TECFS(QWidget *parent) :
     ui(new Ui::TECFS)
 {
     ui->setupUi(this);
-    thread = new Thread(this);
-    connect(thread, &Thread::already, [&](){ //Crea la conneccion con la señal del Thread
-            emit update(); //emite la señal asignada
-        });
     connect(&Server, &server::cmd_change, [&](){
             emit change();
         });
-    connect(this, &TECFS::update, //Conecta la señal asignada con el metodo Update()
-                &TECFS::Update);
-
+    connect(&Server, &server::R_Message, [&](){
+            emit r_message();
+        });
     connect(this, &TECFS::change,
                 &TECFS::Append_CMD);
-
-    thread->start(10,QThread::HighPriority); //Inicia el Thread ejecutandose cada 10ms
+    connect(this, &TECFS::r_message,
+                &TECFS::Interpreter_Message);
     //controller_node.write_book("/home/kenneth/Proyecto-TEC-File-System/TEC_FILE_SYSTEM/books");
     //qDebug()<<controller_node.read_book("los").split("/");
 }
@@ -53,9 +49,19 @@ void TECFS::Append_CMD()
 {
     ui->CMD_->setText(Server.CMD);
 }
-/**
-* \brief Metodo update de la aplicacion, que se ejecuta segùn la señal del Thread
-*/
-void TECFS::Update()
+
+void TECFS::Interpreter_Message()
 {
+    QString message = Server.Received_Message;
+    QStringList m_split = message.split("&");
+    if(m_split[0]=="Path"){
+        QString str1 = m_split[1];
+        QByteArray ba = str1.toLocal8Bit();
+        char *c_str2 = ba.data();
+        controller_node.write_book(c_str2);
+    }
+    if(m_split[0]=="Search"){
+        Server.Send_Message(controller_node.read_book(m_split[1]));
+    }
 }
+

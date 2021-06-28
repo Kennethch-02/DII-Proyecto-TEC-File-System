@@ -136,7 +136,7 @@ QString Controller_Node::read_book(QString search)
                     pos_letter = 0;
                 }
             }else{
-                QString _result = word+"-"+archivos[book]+"-"+QString::number(book_letter)+"/";
+                QString _result = word+" "+archivos[book]+" "+QString::number(book_letter)+"\n";
                 result.append(_result);
                 pos_letter = 0;
                 word.clear();
@@ -148,7 +148,6 @@ QString Controller_Node::read_book(QString search)
 }
 void Controller_Node::write_in_disk()
 {
-
     int _parity = 0;
     int this_bit;
     for(int i = 0; i<bytes.size(); i++){

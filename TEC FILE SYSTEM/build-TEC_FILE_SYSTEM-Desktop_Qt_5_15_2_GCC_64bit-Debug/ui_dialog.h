@@ -28,12 +28,10 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *Connect;
     QPushButton *Cancel;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QGridLayout *gridLayout;
     QLabel *label_2;
     QSpinBox *port;
-    QSpinBox *memory;
-    QLabel *label;
 
     void setupUi(QDialog *Dialog)
     {
@@ -56,36 +54,23 @@ public:
 
         horizontalLayout->addWidget(Cancel);
 
-        widget = new QWidget(Dialog);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(0, 0, 311, 61));
-        gridLayout = new QGridLayout(widget);
+        layoutWidget = new QWidget(Dialog);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(0, 0, 311, 61));
+        gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        gridLayout->addWidget(label_2, 1, 0, 1, 1);
+        gridLayout->addWidget(label_2, 0, 0, 1, 1);
 
-        port = new QSpinBox(widget);
+        port = new QSpinBox(layoutWidget);
         port->setObjectName(QString::fromUtf8("port"));
         port->setMinimum(1200);
         port->setMaximum(120000);
 
-        gridLayout->addWidget(port, 1, 2, 1, 1);
-
-        memory = new QSpinBox(widget);
-        memory->setObjectName(QString::fromUtf8("memory"));
-        memory->setMinimumSize(QSize(200, 0));
-        memory->setMinimum(2048);
-        memory->setMaximum(20000);
-
-        gridLayout->addWidget(memory, 0, 2, 1, 1);
-
-        label = new QLabel(widget);
-        label->setObjectName(QString::fromUtf8("label"));
-
-        gridLayout->addWidget(label, 0, 0, 1, 1);
+        gridLayout->addWidget(port, 0, 2, 1, 1);
 
 
         retranslateUi(Dialog);
@@ -99,7 +84,6 @@ public:
         Connect->setText(QCoreApplication::translate("Dialog", "Connnect", nullptr));
         Cancel->setText(QCoreApplication::translate("Dialog", "Cancel", nullptr));
         label_2->setText(QCoreApplication::translate("Dialog", "Port", nullptr));
-        label->setText(QCoreApplication::translate("Dialog", "Memory", nullptr));
     } // retranslateUi
 
 };

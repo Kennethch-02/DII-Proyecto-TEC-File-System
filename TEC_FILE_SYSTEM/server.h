@@ -19,12 +19,13 @@ public:
     QString CMD; //String de los mensajes que se mostraran en consola.
     int porcent; //Porcentage que se mostrara en la aplicacion TECFS
     QString Received_Message; //String Asignado al mensaje recivido
+    void Send_Message(QString message); //Metodo para enviar un mensaje
 protected:
     void incomingConnection(qintptr handle); //Metodo protegido del QServer
 signals:
     void cmd_change();
+    void R_Message();
 private:
-    void Send_Message(QString message); //Metodo para enviar un mensaje
     void Do_Action(); //Metodo que realiza la interpretacion de los mensajes
     QList<client *> mSockets; //Lista de los clientes conectados
 };

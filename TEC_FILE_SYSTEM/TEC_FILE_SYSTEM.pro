@@ -15,22 +15,16 @@ SOURCES += \
     tecfs.cpp \
     dialog.cpp \
     server.cpp \
-    thread.cpp \
     client.cpp \
-    main.cpp \
-    thread_read.cpp \
-    thread_write.cpp
+    main.cpp
 
 HEADERS += \
     controller_node.h \
     dialog.h \
     disknode.h \
     server.h \
-    thread.h \
     client.h \
-    tecfs.h \
-    thread_read.h \
-    thread_write.h
+    tecfs.h
 
 FORMS += \
     dialog.ui\

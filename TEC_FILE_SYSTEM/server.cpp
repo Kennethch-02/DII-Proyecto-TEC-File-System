@@ -13,7 +13,7 @@
 */
 void server::change_cmd(QString a)
 {
-    CMD.append("> " + a);
+    CMD.append("> " + a+ "\n");
     emit cmd_change();
 }
 server::server(QObject *parent)
@@ -56,8 +56,8 @@ void server::incomingConnection(qintptr handle){
         QTextStream T(S); //Obtiene el QTextStream
         auto text = T.readAll(); //Lee el QString que contiene el mensaje
         Received_Message = text; //Asigna el mensaje a la variable Received_Message
-        Do_Action(); //Llama a la funcion que interpretara el mensaje
-        change_cmd("Servidor: Reciviendo mensaje");
+        change_cmd("Servidor: Recibiendo mensaje");
+        emit R_Message();
     });
     connect(socket, &client::StateChanged, [&](client *S, int ST){ //Crea la señal de desconecciòn
         if (ST == QTcpSocket::UnconnectedState){ //Si un cliente se desconecta

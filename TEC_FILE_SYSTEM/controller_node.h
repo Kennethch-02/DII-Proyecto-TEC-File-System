@@ -1,8 +1,6 @@
 #ifndef CONTROLLER_NODE_H
 #define CONTROLLER_NODE_H
 #include "disknode.h"
-#include "thread_read.h"
-#include "thread_write.h"
 #include <map>
 #include <QObject>
 
@@ -15,8 +13,6 @@ public:
     void add_node();
     void write_book(char *rute);
     QString read_book(QString search);
-    thread_read *T_Read;
-    thread_write *T_Write;
     QString bytes;
     QStringList archivos;
 private:
