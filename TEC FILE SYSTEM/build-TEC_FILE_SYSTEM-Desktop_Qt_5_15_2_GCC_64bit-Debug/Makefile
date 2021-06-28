@@ -237,6 +237,7 @@ DIST          = /home/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
+		../../TEC_FILE_SYSTEM/.qmake.stash \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -444,6 +445,7 @@ Makefile: ../../TEC_FILE_SYSTEM/TEC_FILE_SYSTEM.pro ../../../../Qt/5.15.2/gcc_64
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -622,6 +624,7 @@ Makefile: ../../TEC_FILE_SYSTEM/TEC_FILE_SYSTEM.pro ../../../../Qt/5.15.2/gcc_64
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf:
 ../../../../Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf:
@@ -1419,6 +1422,41 @@ tecfs.o: ../../TEC_FILE_SYSTEM/tecfs.cpp ../../TEC_FILE_SYSTEM/tecfs.h \
 		../../TEC_FILE_SYSTEM/disknode.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/QList \
 		ui_tecfs.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QVariant \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QFormLayout \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qformlayout.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QLayout \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QProgressBar \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qprogressbar.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QSpacerItem \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QTextEdit \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtextedit.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtextdocument.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtextcursor.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtextformat.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qpen.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QWidget \
 		../../TEC_FILE_SYSTEM/dialog.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QDialog \
 		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdialog.h
@@ -1529,7 +1567,34 @@ dialog.o: ../../TEC_FILE_SYSTEM/dialog.cpp ../../TEC_FILE_SYSTEM/dialog.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtCore/qfiledevice.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtGui/qvector2d.h \
 		../../../../Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
-		ui_dialog.h
+		ui_dialog.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/QVariant \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QGridLayout \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QSpinBox \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qspinbox.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt/5.15.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialog.o ../../TEC_FILE_SYSTEM/dialog.cpp
 
 server.o: ../../TEC_FILE_SYSTEM/server.cpp ../../TEC_FILE_SYSTEM/server.h \

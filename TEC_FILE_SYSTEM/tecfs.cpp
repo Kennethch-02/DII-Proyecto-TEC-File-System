@@ -60,6 +60,7 @@ void TECFS::Interpreter_Message()
     QString message = Server.Received_Message; //Obtiene el mensaje
     QStringList m_split = message.split("&"); //Lo divide segùn la estructura deseada
     if(m_split[0]=="Path"){ //Instricciones cuando se trata de un mensaje Path
+        ui->s_controller->setText("Ready");
         QString str1 = m_split[1];
         QByteArray ba = str1.toLocal8Bit();
         char *c_str2 = ba.data();

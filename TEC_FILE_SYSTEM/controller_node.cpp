@@ -63,7 +63,6 @@ void Controller_Node::write_book(char *rute)
     if( DIR* pDIR = opendir(rute)){ //Instrucciones encargadar de abrir el Path del archivo
         while(dirent* entry = readdir(pDIR)){ //y cargar en una lista los elementos .txt
             QString fileName = entry->d_name;
-            qDebug()<<fileName;
             if( fileName != "." && fileName != ".." ){
                 archivos.append(fileName);
             }
