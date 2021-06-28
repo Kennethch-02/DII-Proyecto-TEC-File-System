@@ -1,13 +1,23 @@
-#ifndef SPLIT_H
-#define SPLIT_H
+//
+// Created by User on 28/6/2021.
+//
+
+#ifndef NEW_FOLDER_SPLIT_H
+#define NEW_FOLDER_SPLIT_H
 #include <vector>
 #include <string>
 using namespace std;
-class Split
-{
+
+class Split {
 public:
-    Split();
-    static  vector<string> split(string ,char);
+
+    vector<string> split(string ,char);
+
+
+
+
+
 };
 
-#endif // SPLIT_H
+
+#endif //NEW_FOLDER_SPLIT_H

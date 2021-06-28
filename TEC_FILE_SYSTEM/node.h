@@ -1,23 +1,29 @@
-#ifndef NODE_H
-#define NODE_H
-#include <string>;
+//
+// Created by User on 28/6/2021.
+//
+
+#ifndef NEW_FOLDER_NODE_H
+#define NEW_FOLDER_NODE_H
+#include <string>
 using namespace std;
 
-class node
-{
+class node {
+
 public:
-    node();
     node* right;
     node* left;
     node* next;
 
 
-    char data;
-    int value;
+    string data;
+    int value = 0;
     string code;
-
+    node();
     node(int);
-    node(char,int);
+    node(string,int);
+
+
 };
 
-#endif // NODE_H
+
+#endif //NEW_FOLDER_NODE_H

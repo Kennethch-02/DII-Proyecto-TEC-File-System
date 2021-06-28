@@ -1,6 +1,8 @@
+//
+// Created by User on 28/6/2021.
+//
+
 #include "node.h"
-
-
 node::node() {
     this->right = NULL;
     this->left = NULL;
@@ -15,7 +17,7 @@ node::node(int val){
 
 }
 
-node::node(char dat, int val){
+node::node(string dat, int val){
     this->data = dat;
     this->value = val;
     this->right = NULL;
