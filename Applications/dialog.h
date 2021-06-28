@@ -2,11 +2,13 @@
 #define DIALOG_H
 
 #include <QDialog>
-
+/**
+* \brief Ventana Dialog, se encarga de mostrar y establecer la
+* coneccion con el servidor.
+*/
 namespace Ui {
 class Dialog;
 }
-
 class Dialog : public QDialog
 {
     Q_OBJECT

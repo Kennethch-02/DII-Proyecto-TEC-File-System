@@ -2,11 +2,14 @@
 #define CONTROLLER_NODE_H
 #include "disknode.h"
 #include <map>
-#include <QObject>
-
+/**
+* \brief Se encarga de parametrizar y desarrollar el manejo de los
+* disknodes y su respectivas funciones.
+* @param Class
+*/
 class Controller_Node
 {
-public:
+public: //Metodos y variables publicos de la clase, realizan funciones especificas
     Controller_Node();
     void set_head(DiskNode h);
     DiskNode get_head();
@@ -15,7 +18,7 @@ public:
     QString read_book(QString search);
     QString bytes;
     QStringList archivos;
-private:
+private: //Metodos y variables privadas de la clase
     QList<int> disks;
     QList<int> slts;
     int disk_pos;

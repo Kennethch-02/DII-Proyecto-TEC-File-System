@@ -6,7 +6,7 @@
 */
 client::client(qintptr handle, QObject *parent)
     :QTcpSocket(parent)
-{
+{   // Coneccion de las señales y sus respectivas funciones
     setSocketDescriptor(handle);
     connect(this, &client::readyRead,[&](){
         emit AppReadyRead(this);

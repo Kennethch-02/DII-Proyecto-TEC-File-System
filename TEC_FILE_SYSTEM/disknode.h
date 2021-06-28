@@ -1,6 +1,11 @@
 #ifndef DISKNODE_H
 #define DISKNODE_H
 #include <QList>
+/**
+* \brief Nodo perteneciente a Controller Node
+* Cuentacon el almacenamiento de datos y de los punteros necesarios
+* @param QList
+*/
 class DiskNode
 {
 public:

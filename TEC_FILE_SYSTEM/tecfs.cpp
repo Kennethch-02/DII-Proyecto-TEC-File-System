@@ -44,23 +44,28 @@ void TECFS::on_connect_clicked()
         }
     }
 }
-
+/**
+* \brief Metodo para agregar Texto al CMD de la pantalla
+*/
 void TECFS::Append_CMD()
 {
     ui->CMD_->setText(Server.CMD);
 }
-
+/**
+* \brief Metodo que interpreta los mensajes entrantes, enviados por la
+* aplicacion de prueba.
+*/
 void TECFS::Interpreter_Message()
 {
-    QString message = Server.Received_Message;
-    QStringList m_split = message.split("&");
-    if(m_split[0]=="Path"){
+    QString message = Server.Received_Message; //Obtiene el mensaje
+    QStringList m_split = message.split("&"); //Lo divide segùn la estructura deseada
+    if(m_split[0]=="Path"){ //Instricciones cuando se trata de un mensaje Path
         QString str1 = m_split[1];
         QByteArray ba = str1.toLocal8Bit();
         char *c_str2 = ba.data();
         controller_node.write_book(c_str2);
     }
-    if(m_split[0]=="Search"){
+    if(m_split[0]=="Search"){//Instricciones cuando se trata de un mensaje Search
         Server.Send_Message(controller_node.read_book(m_split[1]));
     }
 }

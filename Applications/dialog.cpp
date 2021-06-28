@@ -1,6 +1,9 @@
 #include "dialog.h"
 #include "ui_dialog.h"
-
+/**
+* \brief Ventana Dialog, se encarga de mostrar y establecer la
+* coneccion con el servidor.
+*/
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)

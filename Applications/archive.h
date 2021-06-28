@@ -2,7 +2,9 @@
 #define ARCHIVE_H
 
 #include <QDialog>
-
+/**
+* \brief Ventana encargada de mostrar el texto de los archivos txt cargados.
+*/
 namespace Ui {
 class Archive;
 }
@@ -13,8 +15,8 @@ class Archive : public QDialog
 
 public:
     explicit Archive(QWidget *parent = nullptr);
-    QString text;
-    void set_text();
+    QString text; //Texto que se mostrara
+    void set_text(); //Metodo para mostar el texto
 
 private:
     Ui::Archive *ui;

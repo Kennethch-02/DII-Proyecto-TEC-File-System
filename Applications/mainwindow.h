@@ -8,7 +8,11 @@
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
-
+/**
+* \brief Window Princial de ejecucion, realiza las instruciones necesarias para
+* las apliaciones de prueba.
+* \param MainWindow
+*/
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
