@@ -10,19 +10,27 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    controller_node.cpp \
+    disknode.cpp \
     tecfs.cpp \
     dialog.cpp \
     server.cpp \
     thread.cpp \
     client.cpp \
-    main.cpp
+    main.cpp \
+    thread_read.cpp \
+    thread_write.cpp
 
 HEADERS += \
+    controller_node.h \
     dialog.h \
+    disknode.h \
     server.h \
     thread.h \
     client.h \
-    tecfs.h
+    tecfs.h \
+    thread_read.h \
+    thread_write.h
 
 FORMS += \
     dialog.ui\

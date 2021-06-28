@@ -11,11 +11,11 @@
 * de los mensajes recibidos o enviados.
 * @param QTcpServer()
 */
-void server::emit_signal()
+void server::change_cmd(QString a)
 {
+    CMD.append("> " + a);
     emit cmd_change();
 }
-
 server::server(QObject *parent)
     :QTcpServer(parent)
 {
@@ -37,8 +37,7 @@ void server::Do_Action(){
 */
 void server::Send_Message(QString message){
     for(auto a : mSockets){ //Para cada cliente conectado
-        CMD.append(">Servidor: Enviando Mensajes");
-        emit_signal();
+        change_cmd("Servidor: Enviando Mensaje");
         QTextStream M(a); //Crea el QTextStream
         M<<message; //Envio de mensajes
         a->flush(); //Limpia el servidor
@@ -49,8 +48,7 @@ void server::Send_Message(QString message){
 * nuevo cliente
 */
 void server::incomingConnection(qintptr handle){
-    CMD.append(">Se ha conectado:" + handle); //Notifica en consola el cliente que se conecto
-    emit_signal();
+    change_cmd("Se ha conectado:" + QString::number(handle)); //Notifica en consola el cliente que se conecto
     auto socket = new client(handle, this); //Crea el cliente
     mSockets << socket; //Agrega el cliente a la lista de clientes
     connect(socket, &client::AppReadyRead, [&](client *S){ //Crea una coneccion con la señal para recibir mensajes
@@ -59,10 +57,11 @@ void server::incomingConnection(qintptr handle){
         auto text = T.readAll(); //Lee el QString que contiene el mensaje
         Received_Message = text; //Asigna el mensaje a la variable Received_Message
         Do_Action(); //Llama a la funcion que interpretara el mensaje
+        change_cmd("Servidor: Reciviendo mensaje");
     });
     connect(socket, &client::StateChanged, [&](client *S, int ST){ //Crea la señal de desconecciòn
         if (ST == QTcpSocket::UnconnectedState){ //Si un cliente se desconecta
-            qDebug()<<"UnconnectedState: "<<S->socketDescriptor(); //Notifica en consola la desconeccion
+            change_cmd("Servidor: Usuario Desconectado" + QString::number(S->socketDescriptor())); //Notifica en consola la desconeccion
             mSockets.removeOne(S); //remueve al cliente de la lista
         }
     });

@@ -13,7 +13,7 @@ class server : public QTcpServer
 {
     Q_OBJECT
 public:
-    void emit_signal();
+    void change_cmd(QString a);
     server(QObject *parent = nullptr);
     bool startServer(quint16 port); //Metodo para iniciar el servidor
     QString CMD; //String de los mensajes que se mostraran en consola.

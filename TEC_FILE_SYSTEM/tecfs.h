@@ -2,8 +2,10 @@
 #define TECFS_H
 
 #include <QMainWindow>
-#include<server.h>
-#include<thread.h>
+#include <server.h>
+#include <thread.h>
+#include <controller_node.h>
+
 /**
 * \brief Aplicacion grafica para TEC FIle System, muestra el estado del
 * servidor y de la aplicacion Controller Node, especificamente el estado de su funcionamiento.
@@ -27,7 +29,7 @@ signals:
     void update(); //Señal para realizar el update
     void change();
 private:
-
+    Controller_Node controller_node;
     server Server; //Clase servidor
     Thread *thread; //Clase Thread
     Ui::TECFS *ui; //Puntero a la interfaz grafica

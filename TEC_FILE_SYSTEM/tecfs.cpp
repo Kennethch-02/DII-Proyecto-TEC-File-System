@@ -1,6 +1,7 @@
 #include "tecfs.h"
 #include "ui_tecfs.h"
 #include "dialog.h"
+#include "controller_node.h"
 /**
 * \brief Aplicacion grafica para TEC FIle System, muestra el estado del
 * servidor y de la aplicacion Controller Node, especificamente el estado de su funcionamiento.
@@ -21,9 +22,13 @@ TECFS::TECFS(QWidget *parent) :
         });
     connect(this, &TECFS::update, //Conecta la señal asignada con el metodo Update()
                 &TECFS::Update);
+
     connect(this, &TECFS::change,
                 &TECFS::Append_CMD);
+
     thread->start(10,QThread::HighPriority); //Inicia el Thread ejecutandose cada 10ms
+    controller_node.write_book("/home/kenneth/Proyecto-TEC-File-System/TEC_FILE_SYSTEM/books");
+
 }
 /**
 * \brief Metodo que se encarga de ejecutar la accion que realiza el servidor
@@ -36,11 +41,9 @@ void TECFS::on_connect_clicked()
         return;
     }else{
         if(Server.startServer(m.port)){
-            Server.CMD.append(">Servidor Iniciado en el puerto: " + QString::number(m.port));//Comprueba que exista forma de conectarse a este puerto
-            Server.emit_signal(); //Emite la señal de que algo cambio en el servidor
+            Server.change_cmd("Servidor Iniciado en el puerto: " + QString::number(m.port));//Comprueba que exista forma de conectarse a este puerto
             ui->s_server->setText("CONNECTED"); //Cambia el estado del servidor en pantalla
             ui->connect->setDisabled(true); //Desabilita el uso del boton START
-
         }
     }
 }
